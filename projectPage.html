@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xavier Guillen Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-menu-wrapper" class="container-style">
+        <header id="project-link">
+            <a id="project-info-btn">
+                <div id="infowrapper">
+                    <div id="title">
+                        <h1 id="project-title">Project Title</h1>
+                        <p id="project-director">Director</p>
+                    </div>
+                    <div id="other-info">
+                        <p id="project-cinematographer">Cinematographer</p>
+                        <p id="project-production">Production Companies</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" id="menu-btn">
+                <img src="Icons/Open-button.svg" alt="Open-button">
+            </a>
+        </header>
+        <div id="dropdown-menu" class="hidden">
+            <div id="about-section">
+                <h1>About</h1>
+                <p id="about-text">Xavier Guillen is a speciality camera operator based in barcelona.With a vast experience in film and advertising he has worked with clients all over the world and in all kind of projects.</p>
+            </div>
+            <div id="navigation-menu">
+                <div id="films-section">
+                    <h1>Films</h1>
+                    <nav id="films-list">
+                        <!-- Film projects will be inserted dynamically -->
+                    </nav>
+                </div>
+                <div id="ads-section">
+                    <h1>Advertisements</h1>
+                    <nav id="ads-list">
+                        <!-- Ad projects will be inserted dynamically -->
+                    </nav>
+                </div>
+            </div>
+            <div id="contact-section">
+                <h1>Contact</h1>
+                <p>info@xavierguillen.com <br>
+                    0034 681 296 304</p>
+            </div>
+        </div>
+    </div>
+    <a href="index.html" id="close-btn" class="container-style">
+        <p>Close</p>
+    </a>    
+    <main id="video-grid"> <!-- Changed to a grid layout -->
+        <!-- Videos are dynamically loaded here -->
+    </main>
+    <script type="module" src="navScript.js"></script>
+    <script type="module" src="projectScript.js"></script>
+</body>
+</html>
