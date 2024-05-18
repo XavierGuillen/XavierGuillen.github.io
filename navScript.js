@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerMenuWrapper = document.getElementById('header-menu-wrapper');
     const dropdownMenu = document.getElementById('dropdown-menu');
     const closeMenuContainer = document.getElementById('close-menu-container');
-    const openMenuBtn = document.getElementById('open-menu-btn');
 
     projects.forEach(project => {
         const listItem = document.createElement('li');
@@ -36,15 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function openDropdownMenu() {
         dropdownMenu.style.display = 'flex';
+        dropdownMenu.style.maxWidth = 'fit-content'; // Temporarily set to fit-content to get the correct width
         const scrollHeight = dropdownMenu.scrollHeight + 'px';
-        const scrollWidth = dropdownMenu.scrollWidth + 'px';
+        const scrollWidth = dropdownMenu.scrollWidth + 'px'; // Store the calculated width
         dropdownMenu.style.maxHeight = '0';
         dropdownMenu.style.maxWidth = '0';
         dropdownMenu.style.opacity = '0';
         dropdownMenu.style.transform = 'scale(0.95)';
         setTimeout(() => {
             dropdownMenu.style.maxHeight = scrollHeight;
-            dropdownMenu.style.maxWidth = scrollWidth;
+            dropdownMenu.style.maxWidth = scrollWidth; // Animate to the stored width
             dropdownMenu.style.opacity = '1';
             dropdownMenu.style.transform = 'scale(1)';
         }, 10); // Small delay to ensure the display change is registered
