@@ -36,8 +36,8 @@ function updateProjectInfo(project) {
 
     projectTitle.textContent = project.title;
     projectDirector.textContent = `${project.director}`;
-    projectCinematographer.textContent = `Cinematographer: ${project.cinematographer}`;
-    projectProduction.textContent = `Prod. Co.: ${project.productionCompany}`;
+    projectCinematographer.textContent = `DoP: ${project.cinematographer}`;
+    projectProduction.textContent = `Prod. Co: ${project.productionCompany}`;
 
     // Appending videos to the grid
     const videoGrid = document.getElementById('video-grid');
@@ -90,28 +90,3 @@ function updateProjectInfo(project) {
     });
     
 }
-
-// Menu button and dropdown menu handling
-const menuBtn = document.getElementById('menu-btn');
-const dropdownMenu = document.getElementById('dropdown-menu');
-const headerMenuWrapper = document.getElementById('header-menu-wrapper');
-
-if (menuBtn && headerMenuWrapper) {
-    menuBtn.addEventListener('click', function(event) {
-        const isMenuOpen = dropdownMenu.classList.contains('active');
-        dropdownMenu.classList.toggle('active');
-    
-        event.stopPropagation();
-    });
-} else {
-    console.error('Menu button or header menu wrapper not found.');
-}
-
-    // Listener for clicks outside of the menu
-    document.addEventListener('click', function(event) {
-        if (!menuBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
-            dropdownMenu.classList.remove('active');
-            headerMenuWrapper.classList.remove('gradient-active');
-            headerMenuWrapper.setAttribute('data-gradient-visible', false);
-        }
-    });

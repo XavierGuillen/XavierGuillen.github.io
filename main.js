@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateProjectInfo(project) {
         projectTitle.textContent = project.title;
         projectDirector.textContent = project.director;
-        projectCinematographer.textContent = `Cinematographer: ${project.cinematographer}`;
-        projectProduction.textContent = `Prod. Co.: ${project.productionCompany}`;
+        projectCinematographer.textContent = `DoP: ${project.cinematographer}`;
+        projectProduction.textContent = `Prod. Co: ${project.productionCompany}`;
 
         const totalVideos = project.videos.length;
         videoCountIndicator.textContent = `1/${totalVideos}`;

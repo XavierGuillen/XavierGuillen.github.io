@@ -8,46 +8,63 @@
 </head>
 <body>
     <div id="header-menu-wrapper" class="container-style">
-        <header id="project-link">
-            <a id="project-info-btn">
-                <div id="infowrapper">
-                    <div id="title">
-                        <h1 id="project-title">Project Title</h1>
-                        <p id="project-director">Director</p>
-                    </div>
-                    <div id="other-info">
-                        <p id="project-cinematographer">Cinematographer</p>
-                        <p id="project-production">Production Companies</p>
+        <div id="top-navigation">
+            <div id="menu-btn">
+                <div id="project-info-btn">
+                    <div id="infowrapper">
+                        <div id="title">
+                            <h1 id="project-title">Project Title</h1>
+                            <p id="project-director">Director</p>
+                        </div>
+                        <div id="other-info">
+                            <p id="project-cinematographer">Cinematographer</p>
+                            <p id="project-production">Production Companies</p>
+                        </div>
                     </div>
                 </div>
-            </a>
-            <a href="#" id="menu-btn">
-                <img src="Icons/Open-button.svg" alt="Open-button">
-            </a>
-        </header>
-        <div id="dropdown-menu" class="hidden">
+                <div id="open-menu-btn">
+                    <img src="Icons/Open-button.svg" alt="Open-button">
+                </div>
+            </div>
+            <div id="close-menu-btn">
+                <img id="close-menu-btn-inactive" src="Icons/Close-button.svg" alt="Close-button">
+                <img id="close-menu-btn-active" src="Icons/Close-button-hover.svg" alt="Close-button-hover">
+            </div>  
+        </div>
+        <div id="dropdown-menu" class="hidden hidden-item">
             <div id="about-section">
-                <h1>About</h1>
-                <p id="about-text">Xavier Guillen is a speciality camera operator based in barcelona.With a vast experience in film and advertising he has worked with clients all over the world and in all kind of projects.</p>
+                <h1>Xavier Guillen is a speciality camera operator based in barcelona.With a vast experience in film and advertising he has worked with clients all over the world and in all kind of projects.</h1>
             </div>
             <div id="navigation-menu">
-                <div id="films-section">
-                    <h1>Films</h1>
-                    <nav id="films-list">
+                <div class="list-section">
+                    <h1>Film</h1>
+                    <nav id="films-list" class="list-elements">
                         <!-- Film projects will be inserted dynamically -->
                     </nav>
                 </div>
-                <div id="ads-section">
-                    <h1>Advertisements</h1>
-                    <nav id="ads-list">
+                <div class="list-section">
+                    <h1>Commercial</h1>
+                    <nav id="ads-list" class="list-elements">
                         <!-- Ad projects will be inserted dynamically -->
                     </nav>
                 </div>
+                <div class="list-section">
+                    <h1>Music Video</h1>
+                    <nav id="music-list" class="list-elements">
+                        <!-- Music Video projects will be inserted dynamically -->
+                    </nav>
+                </div>
+                <div class="list-section">
+                    <h1>Other</h1>
+                    <nav id="other-list" class="list-elements">
+                        <!-- Other projects will be inserted dynamically -->
+                    </nav>
+                </div>
+                
             </div>
             <div id="contact-section">
-                <h1>Contact</h1>
-                <p>info@xavierguillen.com <br>
-                    0034 681 296 304</p>
+                <a href="mailto:elcorreoquequieres@correo.com"><h1>info@xavierguillen.com <br>
+                    0034 681 296 304</h1></a>   
             </div>
         </div>
     </div>
