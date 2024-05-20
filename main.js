@@ -32,9 +32,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const videoElement = document.createElement('video');
         videoElement.autoplay = true;
         videoElement.muted = true;
+        videoElement.playsInline = true; // Add playsinline attribute
+        videoElement.loop = true; // Loop the video
         videoElement.style.width = '100%';
         videoElement.style.height = '100%';
         videoElement.style.objectFit = 'cover';
+        videoElement.style.pointerEvents = 'none'; // Prevent interaction
 
         const sourceMP4 = document.createElement('source');
         sourceMP4.src = `videos/${project.videos[0].replace(/\..+$/, '.mp4')}`;

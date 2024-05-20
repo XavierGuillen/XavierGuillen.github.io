@@ -381,6 +381,11 @@ padding: 0;
       display: flex;
       justify-content: center;
     }
+
+    #video-grid {
+      display: flex;
+      flex-direction: column;
+    }
     
 }
 
