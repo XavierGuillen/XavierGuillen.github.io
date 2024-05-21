@@ -6,7 +6,7 @@ export const projects = [
         director: "Ferran Echegaray, Stillz, Rosalia",
         cinematographer: "Christopher Ripley",
         productionCompany: "CANADA",
-        videos: ["Rosalia-live-LQ.webm", "Rosalia-Tik-Tok-Live-Video-1.webm", "Rosalia-Tik-Tok-Live-Video–3.webm", "Rosalia-Tik-Tok-Live-Video-4.webm"],
+        videos: ["https://vimeo.com/930747949", "https://vimeo.com/597053865","https://vimeo.com/930747949", "https://vimeo.com/597053865","https://vimeo.com/930747949", "https://vimeo.com/597053865"],
         id: "Rosalía MOTOMAMI (Tik Tok Live Performance)",
         category: "music"
     },
@@ -15,7 +15,7 @@ export const projects = [
         director: "Alex Sardà",
         cinematographer: "Alvar Riu",
         productionCompany: "MAÑANA",
-        videos: ["Tarta-Relena-Video-1.webm", "Tarta-Relena-Video-3.webm", "Tarta-Relena-Video-4.webm", "Tarta-Relena-Video-5.webm" ],
+        videos: ["https://vimeo.com/677316706"],
         id: "Tarta Relena: El Suicidi i el Cant",
         category: "music"
     },
@@ -24,7 +24,7 @@ export const projects = [
         director: "Pantera",
         cinematographer: "Dani Abelló",
         productionCompany: "AnonymousXSomesuch",
-        videos: ["Adidas-Feel-The-Boost-Video–1.webm", "Adidas-Feel-The-Boost-Video-2.webm", "Adidas-Feel-The-Boost-Video-3.webm", "Adidas-Feel-The-Boost-Video-4.webm"],
+        videos: ["https://vimeo.com/347578458", "Adidas-Feel-The-Boost-Video-2.webm", "Adidas-Feel-The-Boost-Video-3.webm", "Adidas-Feel-The-Boost-Video-4.webm"],
         id: "Adidas: Feel the Boost",
         category: "ad"
     },
@@ -42,7 +42,7 @@ export const projects = [
         director: "Ferran Echegaray, Stillz, Rosalia",
         cinematographer: "Christopher Ripley",
         productionCompany: "CANADA",
-        videos: ["Rosalia-live-LQ.webm", "Rosalia-Tik-Tok-Live-Video-1.webm", "Rosalia-Tik-Tok-Live-Video–3.webm", "Rosalia-Tik-Tok-Live-Video-4.webm"],
+        videos: ["https://vimeo.com/123456789", "https://vimeo.com/987654321"],
         id: "Rosalía MOTOMAMI (Tik Tok Live Performance)",
         category: "music"
     },
@@ -51,7 +51,7 @@ export const projects = [
         director: "Jaime Puertas",
         cinematographer: "Alvar Riu",
         productionCompany: "Peliculas Maria",
-        videos: ["HDP-Video-1.webm", "HDP-Video-3.webm"],
+        videos: ["https://vimeo.com/912979045"],
         id: "Historia de Pastores",
         category: "film"
     },

@@ -24,11 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-
-
 function updateProjectInfo(project) {
-    // Updating existing elements in the HTML
-    const projectInfoBtn = document.getElementById('project-info-btn');
     const projectTitle = document.getElementById('project-title');
     const projectDirector = document.getElementById('project-director');
     const projectCinematographer = document.getElementById('project-cinematographer');
@@ -39,54 +35,27 @@ function updateProjectInfo(project) {
     projectCinematographer.textContent = `DoP: ${project.cinematographer}`;
     projectProduction.textContent = `Prod. Co: ${project.productionCompany}`;
 
-    // Appending videos to the grid
     const videoGrid = document.getElementById('video-grid');
     videoGrid.innerHTML = ''; // Clear existing content
 
-    // Change grid layout if there are more than four videos
-    if (project.videos.length > 4) {
-        videoGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-    } else {
-        videoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    }
+    videoGrid.classList.add('video-grid'); // Add the CSS class
 
-    project.videos.forEach(videoFile => {
-        const videoElement = document.createElement('video');
-        videoElement.src = `videos/${videoFile}`;
-        videoElement.autoplay = true;
-        videoElement.muted = true;
-        videoElement.loop = true;
-        videoElement.style.objectFit = 'cover';
-        videoElement.controls = false;
-        videoElement.preload = 'auto';  // Advise the browser to preload the video
-    
-        videoElement.onended = function() {
-            this.play();  // Ensure the video loops by playing it again when it ends
-        };
+    project.videos.forEach(videoUrl => {
+        const videoWrapper = document.createElement('div');
+        videoWrapper.classList.add('video-wrapper'); // Add the CSS class
 
-        videoElement.addEventListener('click', function() {
-            if (!document.fullscreenElement) {
-                videoElement.requestFullscreen().catch(err => {
-                    console.log(`Error attempting to enable full-screen mode: ${err.message}`);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        });
+        const iframe = document.createElement('iframe');
+        iframe.src = videoUrl.replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&loop=1&muted=1&background=1';
+        iframe.frameBorder = '0';
+        
 
-        document.addEventListener('fullscreenchange', function() {
-            if (!document.fullscreenElement && videoElement.paused) {
-                videoElement.play();
-                videoElement.controls = false;
-            }
-        });
-
-        videoGrid.appendChild(videoElement);
-
-        videoElement.preload = 'auto';
-
+        videoWrapper.appendChild(iframe);
+        videoGrid.appendChild(videoWrapper);
     });
-    
 }
+
+
+
+
+
+

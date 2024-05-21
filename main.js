@@ -18,41 +18,22 @@ document.addEventListener("DOMContentLoaded", function() {
         projectDirector.textContent = project.director;
         projectCinematographer.textContent = `DoP: ${project.cinematographer}`;
         projectProduction.textContent = `Prod. Co: ${project.productionCompany}`;
-
+    
         const totalVideos = project.videos.length;
         videoCountIndicator.textContent = `1/${totalVideos}`;
         videoCountLink.href = `projectPage.html?id=${project.id}&index=${currentIndex}`;
-
+    
         videoSlideshow.innerHTML = '';
-        const videoWrapper = document.createElement('div');
-        videoWrapper.style.position = 'relative';
-        videoWrapper.style.width = '100%';
-        videoWrapper.style.height = '100%';
+    
+        const iframe = document.createElement('iframe');
+        iframe.src = project.videos[0].replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&loop=1&muted=1&background=1';
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; fullscreen';
+        iframe.style.pointerEvents = 'none';
+    
+        videoSlideshow.appendChild(iframe);
 
-        const videoElement = document.createElement('video');
-        videoElement.autoplay = true;
-        videoElement.muted = true;
-        videoElement.playsInline = true; // Add playsinline attribute
-        videoElement.loop = true; // Loop the video
-        videoElement.style.width = '100%';
-        videoElement.style.height = '100%';
-        videoElement.style.objectFit = 'cover';
-        videoElement.style.pointerEvents = 'none'; // Prevent interaction
-
-        const sourceMP4 = document.createElement('source');
-        sourceMP4.src = `videos/${project.videos[0].replace(/\..+$/, '.mp4')}`;
-        sourceMP4.type = 'video/mp4';
-
-        const sourceWebM = document.createElement('source');
-        sourceWebM.src = `videos/${project.videos[0].replace(/\..+$/, '.webm')}`;
-        sourceWebM.type = 'video/webm';
-
-        videoElement.appendChild(sourceMP4);
-        videoElement.appendChild(sourceWebM);
-        videoWrapper.appendChild(videoElement);
-        videoSlideshow.appendChild(videoWrapper);
-
-        videoElement.onended = function() {
+        iframe.onended = function() {
             currentIndex = (currentIndex + 1) % projects.length;
             updateProjectInfo(projects[currentIndex]);
         };
@@ -76,3 +57,4 @@ document.addEventListener("DOMContentLoaded", function() {
         updateProjectInfo(projects[currentIndex]);
     });
 });
+
