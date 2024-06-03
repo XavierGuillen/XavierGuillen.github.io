@@ -2,12 +2,13 @@ body, html {
 margin: 0;
 padding: 0;
 height: 100%;
-overflow: hidden;
+overflow-y: auto; /* Enable vertical scrolling */
 font-family: 'NB Architekt Regular';
 background-color: black;
 font-size: 12px;
 color: #fff;
 line-height: 115%;
+scroll-behavior: smooth; /* Smooth scrolling */
 }
 
 header {
@@ -44,6 +45,22 @@ color: #8A8A8A;
 margin: 0;
 cursor: pointer;
 }
+
+li {
+color: #8A8A8A;
+margin: 0;
+cursor: pointer;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  cursor: pointer;
+  font-family: 'NB Architekt Regular';
+  font-size: 12px;
+  line-height: 115%;
+  }
+  
 
 /* Font Face Declarations */
 @font-face {
@@ -87,13 +104,26 @@ background-color: black;
   display: none; /* Hide 'See more' on hover */
 }
 
+
 #close-btn {
+  display: block;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 1005;
   color: #8A8A8A;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#close-btn.hidden {
+  opacity: 0;
+}
+
+/* Ensure the containers are positioned relative */
+.video-container, .image-container {
+  position: relative;
 }
 
 #close-btn :hover {
@@ -343,10 +373,10 @@ padding: 0;
       display: none;
   }
 
-    #top-navigation {
-      display: flex;
-      justify-content: center;
-    }
+  #top-navigation {
+    display: flex;
+    justify-content: center;
+  }
 
 }
 
@@ -355,6 +385,16 @@ padding: 0;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+  cursor: default;
+}
+
+
+#video-slideshow.left-cursor {
+  cursor: w-resize;
+}
+
+#video-slideshow.right-cursor {
+  cursor: e-resize;
 }
 
 #video-slideshow iframe {
@@ -379,53 +419,94 @@ padding: 0;
   }
 }
 
-
-#video-grid {
-  width: 100%;
-  height: 100%; /* Full viewport height */
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-height: 100vh; /* Limit the height to viewport height */
-  overflow-y: auto; /* Enable vertical scrolling */
+#video-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px; /* Optional: Adds space between media elements */
+    padding: 0px; /* Optional: Adds padding around the content */
+    scroll-snap-type: y mandatory; /* Enable vertical snapping */
+    width: 100%;
+    height: 100vh; /* Ensure it takes full viewport height */
+    overflow-y: scroll; /* Enable scrolling within the wrapper */
+    background-color: #fff;
 }
 
-#video-grid iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.video-container {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+    scroll-snap-align: start; /* Snap to the start of each element */
+    height: 100%; /* Ensure each item takes full viewport height */
+    display: flex;
+    justify-content: center; /* center items horizontally */
+    align-items: center;
 }
 
-.video-wrapper {
-  position: relative;
+.image-container {
+  scroll-snap-align: start; /* Snap to the start of each element */
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.custom-controls {
+    position: absolute;
+    bottom: 10px;
+    z-index: 1001;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.responsive-iframe-container {
+  position: relative; /* Change to relative to position children absolutely */
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
   height: 0;
+  overflow: hidden;
+  z-index: 1000;
 }
 
-.video-wrapper iframe {
+.responsive-iframe-container iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  border: 0;
+}
+
+.overlay-div {
+    position: absolute;
+    cursor: nesw-resize;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1004; /* Ensure it overlays the iframe */
 }
 
 
 @media (max-width: 768px) {
-  #video-grid {
-      grid-template-columns: 1fr; /* Single column on mobile */
-      height: 100%;
-      overflow-y: auto; /* Enable vertical scrolling */
-      max-height: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      top: 0;
+  .video-container {
+    width: 90%;
   }
-  
 
 }
-

@@ -19,27 +19,42 @@ document.addEventListener("DOMContentLoaded", function() {
         projectCinematographer.textContent = `DoP: ${project.cinematographer}`;
         projectProduction.textContent = `Prod. Co: ${project.productionCompany}`;
     
-        const totalVideos = project.videos.length;
+        const totalVideos = project.media.filter(media => media.type === 'video').length;
         videoCountIndicator.textContent = `1/${totalVideos}`;
         videoCountLink.href = `projectPage.html?id=${project.id}&index=${currentIndex}`;
     
         videoSlideshow.innerHTML = '';
     
-        const iframe = document.createElement('iframe');
-        iframe.src = project.videos[0].replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&loop=1&muted=1&background=1';
-        iframe.frameBorder = '0';
-        iframe.allow = 'autoplay; fullscreen';
-        iframe.style.pointerEvents = 'none';
-    
-        videoSlideshow.appendChild(iframe);
+        const firstVideo = project.media.find(media => media.type === 'video');
+        if (firstVideo) {
+            const iframe = document.createElement('iframe');
+            iframe.src = firstVideo.src.replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&&muted=1&background=1&autopause=1';
+            iframe.frameBorder = '0';
+            iframe.allow = 'autoplay; fullscreen';
+            iframe.style.pointerEvents = 'none';
+        
+            videoSlideshow.appendChild(iframe);
 
-        iframe.onended = function() {
-            currentIndex = (currentIndex + 1) % projects.length;
-            updateProjectInfo(projects[currentIndex]);
-        };
+            iframe.onended = function() {
+                currentIndex = (currentIndex + 1) % projects.length;
+                updateProjectInfo(projects[currentIndex]);
+            };
+        }
     }
 
     updateProjectInfo(projects[currentIndex]); // Initialize the first project's video
+
+    videoSlideshow.addEventListener('mousemove', function(event) {
+        const rect = videoSlideshow.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        if (x < rect.width / 2) {
+            videoSlideshow.classList.add('left-cursor');
+            videoSlideshow.classList.remove('right-cursor');
+        } else {
+            videoSlideshow.classList.add('right-cursor');
+            videoSlideshow.classList.remove('left-cursor');
+        }
+    });
 
     videoSlideshow.addEventListener('click', function(event) {
         if (headerMenuWrapper.classList.contains('header-menu-opened')) {
@@ -58,3 +73,5 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// Setting a cookie in client-side JavaScript
+document.cookie = "name=value; SameSite=None; Secure";

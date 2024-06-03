@@ -1,4 +1,3 @@
-// projectScript.js
 import { projects } from './ProjectData.js';
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -8,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const project = projects.find(p => p.id === projectId);
     if (project) {
         updateProjectInfo(project);
+        populateMediaGrid(project);
     } else {
         console.error('Project not found');
         // Handle the case where the project is not found
@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+document.addEventListener('mousemove', function() {
+    const closeButton = document.getElementById('close-btn');
+    closeButton.classList.remove('hidden');
+    clearTimeout(window.closeButtonTimeout);
+    window.closeButtonTimeout = setTimeout(() => {
+        closeButton.classList.add('hidden');
+    }, 1000); // Adjust the timeout duration as needed
+});
+
 function updateProjectInfo(project) {
     const projectTitle = document.getElementById('project-title');
     const projectDirector = document.getElementById('project-director');
@@ -34,28 +43,118 @@ function updateProjectInfo(project) {
     projectDirector.textContent = `${project.director}`;
     projectCinematographer.textContent = `DoP: ${project.cinematographer}`;
     projectProduction.textContent = `Prod. Co: ${project.productionCompany}`;
+}
 
-    const videoGrid = document.getElementById('video-grid');
-    videoGrid.innerHTML = ''; // Clear existing content
+function populateMediaGrid(project) {
+    const videoWrapper = document.getElementById('video-wrapper');
+    videoWrapper.innerHTML = ''; // Clear existing content
+    project.media.forEach((media, index) => {
+        let container;
+        if (media.type === 'video') {
+            container = document.createElement('div');
+            container.classList.add('video-container');
+            const iframeContainer = document.createElement('div');
+            iframeContainer.classList.add('responsive-iframe-container');
+            const iframe = document.createElement('iframe');
+            iframe.src = media.src.replace('vimeo.com', 'player.vimeo.com/video') + '?background=1&loop=1';
+            iframe.frameBorder = '0';
+            iframe.allow = 'autoplay; fullscreen';
+            iframeContainer.appendChild(iframe);
+            const overlayDiv = document.createElement('div');
+            overlayDiv.classList.add('overlay-div');
+            iframeContainer.appendChild(overlayDiv);
+            container.appendChild(iframeContainer);
 
-    videoGrid.classList.add('video-grid'); // Add the CSS class
+            // Attach event listener to each overlayDiv
+            overlayDiv.addEventListener('click', function() {
+                toggleFullScreen(container);
+            });
+        } else {
+            container = document.createElement('div');
+            container.classList.add('image-container');
+            const img = document.createElement('img');
+            img.src = media.src;
+            container.appendChild(img);
+        }
+        videoWrapper.appendChild(container);
 
-    project.videos.forEach(videoUrl => {
-        const videoWrapper = document.createElement('div');
-        videoWrapper.classList.add('video-wrapper'); // Add the CSS class
+        // Create custom controls for each video
+        if (media.type === 'video') {
+            const controls = createCustomControls(index);
+            container.appendChild(controls);
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            container.appendChild(overlay);
 
-        const iframe = document.createElement('iframe');
-        iframe.src = videoUrl.replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&loop=1&muted=1&background=1';
-        iframe.frameBorder = '0';
-        
-
-        videoWrapper.appendChild(iframe);
-        videoGrid.appendChild(videoWrapper);
+            // Initialize Vimeo player for each video
+            initializeVimeoPlayer(container.querySelector('iframe'), index);
+        }
     });
 }
 
+function createCustomControls(index) {
+    const controls = document.createElement('div');
+    controls.classList.add('custom-controls');
 
+    const fullscreenIcon = `
+        <img id="fullscreen-btn" src="Icons/Fullscreen.svg" alt="Fullscreen">
+    `;
 
+    controls.innerHTML = `
+        <button id="fullscreen-button-${index}">${fullscreenIcon}</button>
+    `;
+    return controls;
+}
 
+function initializeVimeoPlayer(iframe, index) {
+    const vimeoPlayer = new Vimeo.Player(iframe);
 
+    const fullscreenButton = document.getElementById(`fullscreen-button-${index}`);
 
+    fullscreenButton.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            iframe.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    });
+}
+
+function toggleFullScreen(videoContainer) {
+    const scrollContainer = document.getElementById('video-wrapper'); // Adjust this if your scroll container has a different ID
+
+    if (!document.fullscreenElement) {
+        // Disable scroll snap before entering fullscreen
+        scrollContainer.style.scrollSnapType = 'none';
+
+        if (videoContainer.requestFullscreen) {
+            videoContainer.requestFullscreen().then(() => {
+                // Re-enable scroll snap after exiting fullscreen
+                document.addEventListener('fullscreenchange', function restoreSnap() {
+                    if (!document.fullscreenElement) {
+                        scrollContainer.style.scrollSnapType = 'y mandatory';
+                        document.removeEventListener('fullscreenchange', restoreSnap);
+                    }
+                });
+            });
+        } else if (videoContainer.mozRequestFullScreen) { /* Firefox */
+            videoContainer.mozRequestFullScreen();
+        } else if (videoContainer.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+            videoContainer.webkitRequestFullscreen();
+        } else if (videoContainer.msRequestFullscreen) { /* IE/Edge */
+            videoContainer.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+            document.msExitFullscreen();
+        }
+    }
+}
