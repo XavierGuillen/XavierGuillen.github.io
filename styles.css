@@ -5,7 +5,7 @@ height: 100%;
 overflow-y: auto; /* Enable vertical scrolling */
 font-family: 'NB Architekt Regular';
 background-color: black;
-font-size: 12px;
+font-size: 11px;
 color: #fff;
 line-height: 115%;
 scroll-behavior: smooth; /* Smooth scrolling */
@@ -34,7 +34,7 @@ margin-block: 0px;
 }
 
 h1 {
-font-size: 12px;
+font-size: 11px;
 color: #fff;
 margin: 0;
 font-weight: 100;
@@ -57,7 +57,7 @@ button {
   border: none;
   cursor: pointer;
   font-family: 'NB Architekt Regular';
-  font-size: 12px;
+  font-size: 11px;
   line-height: 115%;
   }
   
@@ -145,12 +145,12 @@ background-color: black;
 }
 
 #title {
-padding-right: 12px;
+padding-right: 6px;
 border-right: 1px solid #8A8A8A;
 }
 
 #other-info {
-  margin-left: 12px;
+  margin-left: 6px;
 }
 
 
@@ -435,13 +435,23 @@ padding: 0;
 
 .video-container {
     position: relative;
-    width: 70%;
-    overflow: hidden;
-    scroll-snap-align: start; /* Snap to the start of each element */
-    height: 100%; /* Ensure each item takes full viewport height */
-    display: flex;
-    justify-content: center; /* center items horizontally */
-    align-items: center;
+    width: 100%;
+    height: auto; /* Ensure each item takes full viewport height */
+    transition: transform 0.1s ease-in-out; /* Apply transition to both hover and hover out */
+}
+
+.slide {
+  position: relative;
+  width: 70%;
+  scroll-snap-align: start; /* Snap to the start of each element */
+  height: 100%; /* Ensure each item takes full viewport height */
+  display: flex;
+  justify-content: center; /* center items horizontally */
+  align-items: center;
+}
+
+.video-container:hover {
+    transform: scale(1.02); /* Scale up when hovered */
 }
 
 .image-container {
@@ -506,7 +516,25 @@ padding: 0;
 
 @media (max-width: 768px) {
   .video-container {
-    width: 90%;
+    width: 100%;
   }
+
+  #video-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px; /* Optional: Adds space between media elements */
+    padding: 0px; /* Optional: Adds padding around the content */
+    scroll-snap-type: y mandatory; /* Enable vertical snapping */
+    width: 100%;
+    height: auto; /* Ensure it takes full viewport height */
+    overflow-y: scroll; /* Enable scrolling within the wrapper */
+    background-color: #fff;
+}
+
+.slide {
+  width: 100%;
+}
 
 }

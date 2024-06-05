@@ -30,7 +30,7 @@ document.addEventListener('mousemove', function() {
     clearTimeout(window.closeButtonTimeout);
     window.closeButtonTimeout = setTimeout(() => {
         closeButton.classList.add('hidden');
-    }, 1000); // Adjust the timeout duration as needed
+    }, 500); // Adjust the timeout duration as needed
 });
 
 function updateProjectInfo(project) {
@@ -49,6 +49,10 @@ function populateMediaGrid(project) {
     const videoWrapper = document.getElementById('video-wrapper');
     videoWrapper.innerHTML = ''; // Clear existing content
     project.media.forEach((media, index) => {
+        const slide = document.createElement('div');
+        slide.classList.add('slide');
+        videoWrapper.appendChild(slide);
+
         let container;
         if (media.type === 'video') {
             container = document.createElement('div');
@@ -76,7 +80,7 @@ function populateMediaGrid(project) {
             img.src = media.src;
             container.appendChild(img);
         }
-        videoWrapper.appendChild(container);
+        slide.appendChild(container);
 
         // Create custom controls for each video
         if (media.type === 'video') {
@@ -96,30 +100,26 @@ function createCustomControls(index) {
     const controls = document.createElement('div');
     controls.classList.add('custom-controls');
 
-    const fullscreenIcon = `
-        <img id="fullscreen-btn" src="Icons/Fullscreen.svg" alt="Fullscreen">
-    `;
-
-    controls.innerHTML = `
-        <button id="fullscreen-button-${index}">${fullscreenIcon}</button>
-    `;
+    // Removed the fullscreen button creation and addition
     return controls;
 }
 
 function initializeVimeoPlayer(iframe, index) {
     const vimeoPlayer = new Vimeo.Player(iframe);
 
+    // Check if the fullscreen button exists before adding an event listener
     const fullscreenButton = document.getElementById(`fullscreen-button-${index}`);
-
-    fullscreenButton.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            iframe.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-            });
-        } else {
-            document.exitFullscreen();
-        }
-    });
+    if (fullscreenButton) {
+        fullscreenButton.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                iframe.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+    }
 }
 
 function toggleFullScreen(videoContainer) {
@@ -157,4 +157,15 @@ function toggleFullScreen(videoContainer) {
             document.msExitFullscreen();
         }
     }
+}
+
+function setupVideoControls() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const videos = document.querySelectorAll('iframe');
+    videos.forEach(video => {
+        if (isMobile) {
+            // Assuming the iframe is from Vimeo and allows adding parameters
+            video.src += "&controls=1";
+        }
+    });
 }
