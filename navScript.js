@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleDropdownMenu();
             event.stopPropagation();
         });
+    } else {
+        headerMenuWrapper.addEventListener('mouseleave', function() {
+            if (headerMenuWrapper.classList.contains('header-menu-opened')) {
+                closeDropdownMenu();
+            }
+        });
     }
 
     projects.forEach(project => {
@@ -87,26 +93,20 @@ document.addEventListener('DOMContentLoaded', function() {
         event.stopPropagation();
     });
 
+    if (isMobile) {
+        document.addEventListener('click', function(event) {
+            if (!dropdownMenu.contains(event.target) && !topNavigation.contains(event.target) && headerMenuWrapper.classList.contains('header-menu-opened')) {
+                toggleDropdownMenu();
+                event.stopPropagation();
+            }
+        });
+    }
+
     closeMenuContainer.addEventListener('click', function() {
         toggleDropdownMenu(); // This will close the menu
-    });
-
-    document.addEventListener('click', function(event) {
-        if (!dropdownMenu.contains(event.target) && !topNavigation.contains(event.target) && headerMenuWrapper.classList.contains('header-menu-opened')) {
-            toggleDropdownMenu();
-            event.stopPropagation();
-        }
-    });
-
-    headerMenuWrapper.addEventListener('click', function(event) {
-        if (headerMenuWrapper.classList.contains('header-menu-opened')) {
-            closeDropdownMenu();
-            event.stopPropagation();
-        }
     });
 
     // Add event listeners to close the menu when hovering over the about or contact buttons
     document.getElementById('about-btn').addEventListener('mouseenter', closeDropdownMenu);
     document.getElementById('contact-btn').addEventListener('mouseenter', closeDropdownMenu);
 });
-
