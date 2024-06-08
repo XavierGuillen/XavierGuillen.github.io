@@ -78,6 +78,7 @@ cursor: pointer;
 #close-btn {
   opacity: 1;
   transition: opacity 0.5s ease;
+  height: max-content;
 }
 
 /* Ensure the containers are positioned relative */
