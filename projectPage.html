@@ -8,6 +8,34 @@
     <script src="https://player.vimeo.com/api/player.js"></script>
 </head>
 <body>
+    <div id="about-wrapper" class="hidden">
+        <div id="about-btn" class="container-style">
+            <div class="btn">Xavier Guillen</div>
+            <div id="about-content">
+                <p>is a specialty camera operator based in Barcelona. With vast experience in film and advertising, he has worked with clients all over the world and on all kinds of projects.</p>
+            </div>
+        </div>
+        <div id="contact-btn" class="container-style">
+            <div class="btn">Contact</div>
+            <div id="contact-content">
+                <div id="contact-section">
+                    <div id="contact-list">
+                        <div>email</div>
+                        <div>insta</div>
+                        <div>phone</div>
+                    </div>
+                    <div id="contact-elenents">
+                        <a id="mail" href="mailto:elcorreoquequieres@correo.com"><p>info@xavierguillen.com</p></a>
+                        <a href="https://www.instagram.com/xaviguillen/"><p>@xaviguillen</p></a>
+                        <a id="phone" href="tel:+34681296304"><p>0034 681 296 304</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="index.html" id="close-btn" class="hidden container-style">
+            <p>Close</p>
+        </a>
+    </div>
     <div id="header-menu-wrapper" class="container-style">
         <div id="top-navigation">
             <div id="menu-btn">
@@ -23,19 +51,9 @@
                         </div>
                     </div>
                 </div>
-                <div id="open-menu-btn">
-                    <img src="Icons/Open-button.svg" alt="Open-button">
-                </div>
             </div>
-            <div id="close-menu-btn">
-                <img id="close-menu-btn-inactive" src="Icons/Close-button.svg" alt="Close-button">
-                <img id="close-menu-btn-active" src="Icons/Close-button-hover.svg" alt="Close-button-hover">
-            </div>  
         </div>
         <div id="dropdown-menu" class="hidden hidden-item">
-            <div id="about-section">
-                <h1>Xavier Guillen is a speciality camera operator based in barcelona.With a vast experience in film and advertising he has worked with clients all over the world and in all kind of projects.</h1>
-            </div>
             <div id="navigation-menu">
                 <div class="list-section">
                     <h1>Film</h1>
@@ -63,16 +81,32 @@
                 </div>
                 
             </div>
-            <div id="contact-section">
-                <a href="mailto:elcorreoquequieres@correo.com"><h1>info@xavierguillen.com <br>
-                    0034 681 296 304</h1></a>   
+            <div id="about-mobile">
+                <div id="about-section-mobile">
+                    <p class="darker" >Xavier Guillen is a speciality camera operator based in barcelona.With a vast experience in film and advertising he has worked with clients all over the world and in all kind of projects.</p>
+                </div>
+                <div id="contact-section-mobile">
+                    <div id="contact-elenents">
+                        <a id="mail" href="mailto:elcorreoquequieres@correo.com"><p class="darker" >info@xavierguillen.com</p></a>
+                        <a href="https://www.instagram.com/xaviguillen/"><p class="darker" >@xaviguillen</p></a>
+                        <a id="phone" href="tel:+34681296304"><p class="darker" >0034 681 296 304</p></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <a href="index.html" id="close-btn" class="container-style">
+    <a href="index.html" id="close-btn-mobile" class="hidden container-style">
         <p>Close</p>
     </a>
-    <div id="close-menu-container"></div>  
+    <div id="close-menu-container"></div> 
+    <div id="footer" class="hidden">
+        <div class="footer-element project">
+            All rights reserved. © xavier guillen, 2024
+        </div>
+        <div class="footer-element project">
+            Website by <a id="footer-link" href="https://www.acanovas.info/">Alvaro Canovas</a>
+        </div>
+    </div> 
     <main id="video-wrapper">
         <!-- Videos and images will be dynamically loaded here -->
     </main>

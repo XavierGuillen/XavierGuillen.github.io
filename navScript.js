@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdownMenu = document.getElementById('dropdown-menu');
     const closeMenuContainer = document.getElementById('close-menu-container');
 
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        topNavigation.addEventListener('click', function(event) {
+            toggleDropdownMenu();
+            event.stopPropagation();
+        });
+    }
+
     projects.forEach(project => {
         const listItem = document.createElement('li');
         listItem.textContent = project.title;
@@ -72,8 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    topNavigation.addEventListener('click', function(event) {
-        toggleDropdownMenu();
+    topNavigation.addEventListener('mouseenter', function(event) {
+        if (!headerMenuWrapper.classList.contains('header-menu-opened')) {
+            toggleDropdownMenu();
+        }
         event.stopPropagation();
     });
 
@@ -87,4 +97,16 @@ document.addEventListener('DOMContentLoaded', function() {
             event.stopPropagation();
         }
     });
+
+    headerMenuWrapper.addEventListener('click', function(event) {
+        if (headerMenuWrapper.classList.contains('header-menu-opened')) {
+            closeDropdownMenu();
+            event.stopPropagation();
+        }
+    });
+
+    // Add event listeners to close the menu when hovering over the about or contact buttons
+    document.getElementById('about-btn').addEventListener('mouseenter', closeDropdownMenu);
+    document.getElementById('contact-btn').addEventListener('mouseenter', closeDropdownMenu);
 });
+

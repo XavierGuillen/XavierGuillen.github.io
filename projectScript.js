@@ -19,18 +19,36 @@ document.addEventListener("DOMContentLoaded", function() {
     const index = urlParams.get('index'); // Get the index parameter from the URL
 
     const closeButton = document.getElementById('close-btn');
+    const closeButtonMobile = document.getElementById('close-btn-mobile');
     if (closeButton) {
         closeButton.href = `index.html?index=${index}`; // Set the href to include the index
     }
+    if (closeButtonMobile) {
+        closeButtonMobile.href = `index.html?index=${index}`; // Set the href to include the index
+    }
 });
 
-document.addEventListener('mousemove', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const closeButton = document.getElementById('close-btn');
-    closeButton.classList.remove('hidden');
-    clearTimeout(window.closeButtonTimeout);
-    window.closeButtonTimeout = setTimeout(() => {
-        closeButton.classList.add('hidden');
-    }, 500); // Adjust the timeout duration as needed
+    const aboutWrapper = document.getElementById('about-wrapper');
+    const footer = document.getElementById('footer');
+    const closeButtonMobile = document.getElementById('close-btn-mobile');
+
+    document.addEventListener('mousemove', function() {
+        // Show the close button and about wrapper
+        closeButton.classList.remove('hidden');
+        aboutWrapper.classList.remove('hidden');
+        footer.classList.remove('hidden');
+        closeButtonMobile.classList.remove('hidden');
+
+        clearTimeout(window.inactivityTimeout);
+        window.inactivityTimeout = setTimeout(() => {
+            closeButton.classList.add('hidden');
+            aboutWrapper.classList.add('hidden');
+            footer.classList.add('hidden');
+            closeButtonMobile.classList.add('hidden');
+        }, 3000); // Adjust the timeout duration as needed
+    });
 });
 
 function updateProjectInfo(project) {
@@ -79,6 +97,11 @@ function populateMediaGrid(project) {
             const img = document.createElement('img');
             img.src = media.src;
             container.appendChild(img);
+
+            // Attach event listener to the image container
+            container.addEventListener('click', function() {
+                toggleFullScreen(container);
+            });
         }
         slide.appendChild(container);
 
@@ -131,10 +154,12 @@ function toggleFullScreen(videoContainer) {
 
         if (videoContainer.requestFullscreen) {
             videoContainer.requestFullscreen().then(() => {
+                videoContainer.classList.add('fullscreen'); // Add class for fullscreen styling
                 // Re-enable scroll snap after exiting fullscreen
                 document.addEventListener('fullscreenchange', function restoreSnap() {
                     if (!document.fullscreenElement) {
                         scrollContainer.style.scrollSnapType = 'y mandatory';
+                        videoContainer.classList.remove('fullscreen'); // Remove class when exiting fullscreen
                         document.removeEventListener('fullscreenchange', restoreSnap);
                     }
                 });

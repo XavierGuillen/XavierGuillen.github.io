@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const projectProduction = document.getElementById('project-production');
     const videoCountIndicator = document.getElementById('video-count-indicator');
     const videoCountLink = document.getElementById('video-count-link');
+    const videoCountLinkMobile = document.getElementById('video-count-link-mobile');
     
     let currentIndex = parseInt(new URLSearchParams(window.location.search).get('index'), 10) || 0;
+    let progressInterval;
 
     function updateProjectInfo(project) {
         projectTitle.textContent = project.title;
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const totalVideos = project.media.filter(media => media.type === 'video').length;
         videoCountIndicator.textContent = `1/${totalVideos}`;
         videoCountLink.href = `projectPage.html?id=${project.id}&index=${currentIndex}`;
+        videoCountLinkMobile.href = `projectPage.html?id=${project.id}&index=${currentIndex}`;
     
         videoSlideshow.innerHTML = '';
     
@@ -34,11 +37,31 @@ document.addEventListener("DOMContentLoaded", function() {
             iframe.style.pointerEvents = 'none';
         
             videoSlideshow.appendChild(iframe);
+        
+            const player = new Vimeo.Player(iframe);
+            player.on('play', function() {
+                if (progressInterval) {
+                    clearInterval(progressInterval);
+                }
+                progressInterval = setInterval(function() {
+                    player.getCurrentTime().then(function(seconds) {
+                        player.getDuration().then(function(duration) {
+                            const progressWidth = (seconds / duration) * 100;
+                            headerMenuWrapper.style.background = `linear-gradient(90deg, rgba(0,0,0,1) ${progressWidth}%, rgba(0,0,0,0.35) ${progressWidth + 20}%)`;
+                        });
+                    });
+                }, 10); // Update every 1ms for smoother transition
+            });
 
-            iframe.onended = function() {
+            player.on('pause', function() {
+                clearInterval(progressInterval);
+            });
+
+            player.on('ended', function() {
+                clearInterval(progressInterval);
                 currentIndex = (currentIndex + 1) % projects.length;
                 updateProjectInfo(projects[currentIndex]);
-            };
+            });
         }
     }
 
@@ -71,6 +94,36 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         updateProjectInfo(projects[currentIndex]);
     });
+
+    document.addEventListener('mousemove', function() {
+        const videoCountWrapper = document.getElementById('video-count-wrapper');
+        const aboutWrapper = document.getElementById('about-wrapper');
+        const footer = document.getElementById('footer');
+        const videoCountWrapperMobile = document.getElementById('video-count-wrapper-mobile');
+
+        // Ensure both elements are visible on load
+        videoCountWrapper.classList.remove('hidden');
+        aboutWrapper.classList.remove('hidden');
+        footer.classList.remove('hidden');
+        videoCountWrapperMobile.classList.remove('hidden');
+
+        document.addEventListener('mousemove', function() {
+            // Show the video count wrapper and about wrapper
+            videoCountWrapper.classList.remove('hidden');
+            aboutWrapper.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            videoCountWrapperMobile.classList.remove('hidden');
+
+            clearTimeout(window.inactivityTimeout);
+            window.inactivityTimeout = setTimeout(() => {
+                videoCountWrapper.classList.add('hidden');
+                aboutWrapper.classList.add('hidden');
+                footer.classList.add('hidden');
+                videoCountWrapperMobile.classList.add('hidden');
+            }, 3000); // Adjust the timeout duration as needed
+        });
+    });
+
 });
 
 // Setting a cookie in client-side JavaScript
