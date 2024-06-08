@@ -85,6 +85,10 @@ cursor: pointer;
   position: relative;
 }
 
+#close-btn-mobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
   #close-btn-mobile {
     display: block;
