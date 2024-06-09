@@ -11,6 +11,10 @@ line-height: 115%;
 scroll-behavior: smooth; /* Smooth scrolling */
 }
 
+body.no-scroll, html.no-scroll {
+    overflow: hidden; /* Disable scrolling */
+}
+
 header {
 display: flex;
 justify-content: space-between;
@@ -98,7 +102,7 @@ cursor: pointer;
     left: 50%;
     transform: translate(-50%, -50%);
     right: auto;
-    z-index: 1005;
+    z-index: 1001;
   }
 }
 
@@ -407,6 +411,13 @@ padding: 0;
 .video-container:hover {
     transform: scale(1.02); /* Scale up when hovered */
 }
+
+@media (max-aspect-ratio: 16/9) {
+  .video-container:hover {
+    transform: none;
+  }
+}
+
 
 .image-container {
   scroll-snap-align: start; /* Snap to the start of each element */

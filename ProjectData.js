@@ -27,7 +27,7 @@ export const projects = [
         category: "ad"
     },
     {
-        title: "SALOMON: ACS+.",
+        title: "SALOMON: ACS+",
         director: "Alex Sardà",
         cinematographer: "Alvar Riu",
         productionCompany: "MAÑANA",
@@ -35,7 +35,7 @@ export const projects = [
             { type: 'video', src: 'https://vimeo.com/816041394' },
             { type: 'video', src: 'https://vimeo.com/816041394' },
         ],
-        id: "SALOMON: ACS+.",
+        id: "SALOMON: ACS",
         category: "music"
     },
     {

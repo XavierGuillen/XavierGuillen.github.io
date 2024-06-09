@@ -48,6 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function openDropdownMenu() {
+        const videoCountWrapperMobile = document.getElementById('video-count-wrapper-mobile');
+        const closeBtnMobile = document.getElementById('close-btn-mobile');
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
         dropdownMenu.style.display = 'flex';
         dropdownMenu.style.maxWidth = 'fit-content'; // Temporarily set to fit-content to get the correct width
         const scrollHeight = dropdownMenu.scrollHeight + 'px';
@@ -64,9 +68,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10); // Small delay to ensure the display change is registered
         headerMenuWrapper.classList.add('header-menu-opened');
         closeMenuContainer.style.display = 'block';
+        if (isMobile) {
+            videoCountWrapperMobile.style.display = 'none'; // Hide video-count-wrapper-mobile
+            closeBtnMobile.style.display = 'none'; // Hide close-btn-mobile
+        }
     }
 
     function closeDropdownMenu() {
+        const videoCountWrapperMobile = document.getElementById('video-count-wrapper-mobile');
+        const closeBtnMobile = document.getElementById('close-btn-mobile');
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
         dropdownMenu.style.maxHeight = '0';
         dropdownMenu.style.maxWidth = '0';
         dropdownMenu.style.opacity = '0';
@@ -75,6 +87,10 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             dropdownMenu.style.display = 'none';
             closeMenuContainer.style.display = 'none';
+            if (isMobile) {
+                videoCountWrapperMobile.style.display = 'block'; // Show video-count-wrapper-mobile
+                closeBtnMobile.style.display = 'block'; // Show close-btn-mobile
+            }
         }, 100); // Match this timeout to the transition duration
     }
 
