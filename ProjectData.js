@@ -2,52 +2,67 @@
 
 export const projects = [
     {
-        title: "TAG HEUER x PORSCHE",
+        title: "BMW VNK-X",
         director: "Jens Wirtzfeld",
         cinematographer: "PERSONA",
         productionCompany: "Sterntag",
         media: [
-            { type: 'video', src: 'https://vimeo.com/794812761' },
-            { type: 'video', src: 'https://vimeo.com/732726902' },
-            { type: 'image', src: 'Images/HDP-Still-1.jpg' },
+            { type: 'video', src: 'https://vimeo.com/991466942' },
+            { type: 'video', src: 'https://vimeo.com/991466800' },
+            { type: 'video', src: 'https://vimeo.com/991466817' },
+            { type: 'video', src: 'https://vimeo.com/991466841' },
+            { type: 'video', src: 'https://vimeo.com/991466850' },
+            { type: 'video', src: 'https://vimeo.com/991466861' },
+            { type: 'video', src: 'https://vimeo.com/991466872' },
+            { type: 'video', src: 'https://vimeo.com/991466893' },
+            { type: 'video', src: 'https://vimeo.com/991466913' },
+            { type: 'video', src: 'https://vimeo.com/991466930' },
         ],
-        id: "TAG HEUER x PORSCHE",
+        id: "BMW VNK-X",
         category: "ad"
     },
     {
-        title: "LIME SPRING'23 BASIC COLLECTION",
-        director: "Ariela Dorf",
+        title: "Historia de Pastores",
+        director: "Jaime Puertas",
+        cinematographer: "Alvar Riu",
+        productionCompany: "Peliculas Maria",
+        media: [
+            { type: 'video', src: 'https://vimeo.com/991467140' },
+            { type: 'video', src: 'https://vimeo.com/991467038' },
+            { type: 'video', src: 'https://vimeo.com/991467056' },
+            { type: 'video', src: 'https://vimeo.com/991467073' },
+            { type: 'video', src: 'https://vimeo.com/991467084' },
+            { type: 'video', src: 'https://vimeo.com/991467094' },
+            { type: 'video', src: 'https://vimeo.com/991467109' },
+            { type: 'video', src: 'https://vimeo.com/991467122' },
+        ],
+        id: "Historia de Pastores",
+        category: "film"
+    },
+    {
+        title: "Adidas feel the boost",
+        director: "Pantera",
+        cinematographer: "Dani F. Abelló",
+        productionCompany: "AnonymousXSomesuch",
+        media: [
+            { type: 'video', src: 'https://vimeo.com/991466577' },
+            { type: 'video', src: 'https://vimeo.com/991466508' },
+            { type: 'video', src: 'https://vimeo.com/991466530' },
+            { type: 'video', src: 'https://vimeo.com/991466553' },
+        ],
+        id: "Adidas feel the boost",
+        category: "ad"
+    },
+    {
+        title: "Rosalía MOTOMAMI (Tik Tok Live)",
+        director: "Ferran Echegaray, Stillz, Rosalia",
         cinematographer: "Christopher Ripley",
         productionCompany: "CANADA",
         media: [
-            { type: 'video', src: 'https://vimeo.com/799552520' },
-            { type: 'video', src: 'https://vimeo.com/799552520' },
+            { type: 'video', src: 'https://vimeo.com/991468038' },
+            { type: 'video', src: 'https://vimeo.com/991468404' },
         ],
-        id: "LIME SPRING'23 BASIC COLLECTION)",
-        category: "ad"
-    },
-    {
-        title: "SALOMON: ACS+",
-        director: "Alex Sardà",
-        cinematographer: "Alvar Riu",
-        productionCompany: "MAÑANA",
-        media: [
-            { type: 'video', src: 'https://vimeo.com/816041394' },
-            { type: 'video', src: 'https://vimeo.com/816041394' },
-        ],
-        id: "SALOMON: ACS",
-        category: "music"
-    },
-    {
-        title: "GESAFFELSTEIN: Hard Dreams",
-        director: "Pantera",
-        cinematographer: "Dani Abelló",
-        productionCompany: "AnonymousXSomesuch",
-        media: [
-            { type: 'video', src: 'https://vimeo.com/919166352' },
-            { type: 'video', src: 'https://vimeo.com/919166352' },
-        ],
-        id: "GESAFFELSTEIN: Hard Dreams",
+        id: "Rosalía MOTOMAMI (Tik Tok Live)",
         category: "other"
     },
     {

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerMenuWrapper = document.getElementById('header-menu-wrapper');
     const dropdownMenu = document.getElementById('dropdown-menu');
     const closeMenuContainer = document.getElementById('close-menu-container');
+    const aboutWrapper = document.getElementById('about-wrapper');
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function openDropdownMenu() {
         const videoCountWrapperMobile = document.getElementById('video-count-wrapper-mobile');
         const closeBtnMobile = document.getElementById('close-btn-mobile');
+        const aboutWrapper = document.getElementById('about-wrapper');
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         dropdownMenu.style.display = 'flex';
@@ -68,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10); // Small delay to ensure the display change is registered
         headerMenuWrapper.classList.add('header-menu-opened');
         closeMenuContainer.style.display = 'block';
+        aboutWrapper.style.opacity = '0.1'; // Reduce opacity of about-wrapper
         if (isMobile) {
             videoCountWrapperMobile.style.display = 'none'; // Hide video-count-wrapper-mobile
             closeBtnMobile.style.display = 'none'; // Hide close-btn-mobile
@@ -77,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeDropdownMenu() {
         const videoCountWrapperMobile = document.getElementById('video-count-wrapper-mobile');
         const closeBtnMobile = document.getElementById('close-btn-mobile');
+        const aboutWrapper = document.getElementById('about-wrapper');
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         dropdownMenu.style.maxHeight = '0';
@@ -87,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             dropdownMenu.style.display = 'none';
             closeMenuContainer.style.display = 'none';
+            aboutWrapper.style.opacity = '1'; // Restore opacity of about-wrapper
             if (isMobile) {
                 videoCountWrapperMobile.style.display = 'block'; // Show video-count-wrapper-mobile
                 closeBtnMobile.style.display = 'block'; // Show close-btn-mobile
