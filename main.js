@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         videoSlideshow.innerHTML = '';
     
-        const firstVideo = project.media.find(media => media.type === 'video');
+        const firstVideo = project.slideshowVideo;
         if (firstVideo) {
             const iframe = document.createElement('iframe');
             iframe.src = firstVideo.src.replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&&muted=1&background=1&autopause=1';

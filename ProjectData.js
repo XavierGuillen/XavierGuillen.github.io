@@ -2,12 +2,29 @@
 
 export const projects = [
     {
+        title: "Tarta Relena: El Suicidi i el Cant",
+        director: "Alex Sardà",
+        cinematographer: "Alvar Riu",
+        productionCompany: "MAÑANA",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/993352206' },
+        media: [
+            { type: 'video', src: 'https://vimeo.com/993352373' },
+            { type: 'video', src: 'https://vimeo.com/993352330' },
+            { type: 'video', src: 'https://vimeo.com/993352294' },
+            { type: 'video', src: 'https://vimeo.com/991468685' },
+            { type: 'video', src: 'https://vimeo.com/993352269' },
+            { type: 'video', src: 'https://vimeo.com/993352244' },
+        ],
+        id: "Tarta Relena: El Suicidi i el Cant",
+        category: "music"
+    },
+    {
         title: "BMW VNK-X",
         director: "Jens Wirtzfeld",
         cinematographer: "PERSONA",
         productionCompany: "Sterntag",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/993351488' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/991466942' },
             { type: 'video', src: 'https://vimeo.com/991466800' },
             { type: 'video', src: 'https://vimeo.com/991466817' },
             { type: 'video', src: 'https://vimeo.com/991466841' },
@@ -26,8 +43,8 @@ export const projects = [
         director: "Jaime Puertas",
         cinematographer: "Alvar Riu",
         productionCompany: "Peliculas Maria",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/993351512' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/991467140' },
             { type: 'video', src: 'https://vimeo.com/991467038' },
             { type: 'video', src: 'https://vimeo.com/991467056' },
             { type: 'video', src: 'https://vimeo.com/991467073' },
@@ -44,8 +61,8 @@ export const projects = [
         director: "Pantera",
         cinematographer: "Dani F. Abelló",
         productionCompany: "AnonymousXSomesuch",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/993351457' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/991466577' },
             { type: 'video', src: 'https://vimeo.com/991466508' },
             { type: 'video', src: 'https://vimeo.com/991466530' },
             { type: 'video', src: 'https://vimeo.com/991466553' },
@@ -58,9 +75,17 @@ export const projects = [
         director: "Ferran Echegaray, Stillz, Rosalia",
         cinematographer: "Christopher Ripley",
         productionCompany: "CANADA",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/991468038' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/991468038' },
-            { type: 'video', src: 'https://vimeo.com/991468404' },
+            { type: 'video', src: 'https://vimeo.com/993354351' },
+            { type: 'video', src: 'https://vimeo.com/993354305' },
+            { type: 'video', src: 'https://vimeo.com/993354279' },
+            { type: 'video', src: 'https://vimeo.com/993354227' },
+            { type: 'video', src: 'https://vimeo.com/993354191' },
+            { type: 'video', src: 'https://vimeo.com/993354161' },
+            { type: 'video', src: 'https://vimeo.com/993354123' },
+            { type: 'video', src: 'https://vimeo.com/993354072' },
+            { type: 'video', src: 'https://vimeo.com/993354033' },
         ],
         id: "Rosalía MOTOMAMI (Tik Tok Live)",
         category: "other"
@@ -68,10 +93,10 @@ export const projects = [
     {
         title: "ADIDAS: Club Originals",
         director: "Jens Wirtzfeld",
-        cinematographer: "PERSONA",
+        cinematographer: "PERSONA", 
         productionCompany: "Sterntag",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/815393983' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/815393983' },
             { type: 'video', src: 'https://vimeo.com/815393983' },
         ],
         id: "ADIDAS: Club Originals",
@@ -82,8 +107,8 @@ export const projects = [
         director: "Ferran Echegaray, Stillz, Rosalia",
         cinematographer: "Christopher Ripley",
         productionCompany: "CANADA",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/949082251' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/949082251' },
             { type: 'video', src: 'https://vimeo.com/949082274' },
             { type: 'video', src: 'https://vimeo.com/949082299' },
             { type: 'video', src: 'https://vimeo.com/949082318' },
@@ -96,34 +121,20 @@ export const projects = [
         director: "Ariela Dorf",
         cinematographer: "Christopher Ripley",
         productionCompany: "CANADA",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/743506542' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/743506542' },
             { type: 'video', src: 'https://vimeo.com/779350491' },
         ],
         id: "Buchanan's World Cup",
         category: "film"
     },
     {
-        title: "Tarta Relena: El Suicidi i el Cant",
-        director: "Alex Sardà",
-        cinematographer: "Alvar Riu",
-        productionCompany: "MAÑANA",
-        media: [
-            { type: 'video', src: 'https://vimeo.com/949077508' },
-            { type: 'video', src: 'https://vimeo.com/949077508' },
-            { type: 'video', src: 'https://vimeo.com/949077494' },
-            { type: 'video', src: 'https://vimeo.com/949077479' },
-        ],
-        id: "Tarta Relena: El Suicidi i el Cant",
-        category: "music"
-    },
-    {
         title: "Historia de Pastores",
         director: "Jaime Puertas",
         cinematographer: "Alvar Riu",
         productionCompany: "Peliculas Maria",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/955794316' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/955794316' },
             { type: 'video', src: 'https://vimeo.com/955794297' },
             { type: 'video', src: 'https://vimeo.com/955794266' },
             { type: 'video', src: 'https://vimeo.com/955794252' },
@@ -139,8 +150,8 @@ export const projects = [
         director: "Jens Wirtzfeld",
         cinematographer: "PERSONA",
         productionCompany: "Sterntag",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/930747949' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/930747949' },
             { type: 'video', src: 'https://vimeo.com/930747949' },
         ],
         id: "BMW VNK-X",
@@ -151,8 +162,8 @@ export const projects = [
         director: "Pantera",
         cinematographer: "Dani Abelló",
         productionCompany: "AnonymousXSomesuch",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/868315674' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/868315674' },
             { type: 'video', src: 'https://vimeo.com/855448895' },
         ],
         id: "ADIDAS ORIGINALS: NINHO",
@@ -163,8 +174,8 @@ export const projects = [
         director: "Jens Wirtzfeld",
         cinematographer: "PERSONA",
         productionCompany: "Sterntag",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/763577925' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/763577925' },
             { type: 'video', src: 'https://vimeo.com/763577925' },
         ],
         id: "SALOMON: TOMORROW IS YOURS",
@@ -175,8 +186,8 @@ export const projects = [
         director: "Ariela Dorf",
         cinematographer: "Christopher Ripley",
         productionCompany: "CANADA",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/910058208' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/910058208' },
             { type: 'video', src: 'https://vimeo.com/910058208' },
         ],
         id: "AMA LOU: BE WELL (LIVE SESSION)",
@@ -187,8 +198,8 @@ export const projects = [
         director: "Alex Sardà",
         cinematographer: "Alvar Riu",
         productionCompany: "MAÑANA",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/419106991' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/419106991' },
             { type: 'video', src: 'https://vimeo.com/419106991' },
         ],
         id: "ADIDAS: BOUNCE",
@@ -199,8 +210,8 @@ export const projects = [
         director: "Jens Wirtzfeld",
         cinematographer: "PERSONA",
         productionCompany: "Sterntag",
+        slideshowVideo: { type: 'video', src: 'https://vimeo.com/647724124' },
         media: [
-            { type: 'video', src: 'https://vimeo.com/647724124' },
             { type: 'video', src: 'https://vimeo.com/647724124' },
         ],
         id: "BEATS x SAWEETIE",
