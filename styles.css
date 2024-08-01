@@ -306,11 +306,11 @@ padding: 0;
 
 @media (max-width: 768px) {
   body, html {
-    font-size: 0.889rem; /* Adjust the base font size for mobile */
+    font-size: 0.789rem; /* Adjust the base font size for mobile */
   }
 
   h1 {
-    font-size: 0.889rem;
+    font-size: 0.789rem;
     }
 
   #header-menu-wrapper {
@@ -675,7 +675,7 @@ padding: 0;
 
 
 .footer-element {
-  font-size: 0.889rem;
+  font-size: 0.789rem;
   color: #6a6a6a;
 }
 
