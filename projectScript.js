@@ -81,6 +81,8 @@ function populateMediaGrid(project) {
             iframe.src = media.src.replace('vimeo.com', 'player.vimeo.com/video') + '?background=1&loop=1';
             iframe.frameBorder = '0';
             iframe.allow = 'autoplay; fullscreen';
+            iframe.classList.add('project-page-video');
+            iframe.classList.add('project-page-video'); // Add this line to add a specific class
             iframeContainer.appendChild(iframe);
             const overlayDiv = document.createElement('div');
             overlayDiv.classList.add('overlay-div');
@@ -89,8 +91,23 @@ function populateMediaGrid(project) {
 
             // Attach event listener to each overlayDiv
             overlayDiv.addEventListener('click', function() {
-                toggleFullScreen(container);
+                const player = new Vimeo.Player(iframe);
+                player.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
             });
+
+            // Dynamically set the height based on the video's aspect ratio
+            iframe.addEventListener('load', function() {
+                const player = new Vimeo.Player(iframe);
+                player.getVideoWidth().then(width => {
+                    player.getVideoHeight().then(height => {
+                        const aspectRatio = height / width;
+                        iframe.style.height = `${iframe.clientWidth * aspectRatio}px`;
+                    });
+                });
+            });
+
         } else {
             container = document.createElement('div');
             container.classList.add('image-container');
@@ -100,31 +117,14 @@ function populateMediaGrid(project) {
 
             // Attach event listener to the image container
             container.addEventListener('click', function() {
-                toggleFullScreen(container);
+                const player = new Vimeo.Player(iframe);
+                player.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
             });
         }
         slide.appendChild(container);
-
-        // Create custom controls for each video
-        if (media.type === 'video') {
-            const controls = createCustomControls(index);
-            container.appendChild(controls);
-            const overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            container.appendChild(overlay);
-
-            // Initialize Vimeo player for each video
-            initializeVimeoPlayer(container.querySelector('iframe'), index);
-        }
     });
-}
-
-function createCustomControls(index) {
-    const controls = document.createElement('div');
-    controls.classList.add('custom-controls');
-
-    // Removed the fullscreen button creation and addition
-    return controls;
 }
 
 function initializeVimeoPlayer(iframe, index) {
@@ -142,45 +142,6 @@ function initializeVimeoPlayer(iframe, index) {
                 document.exitFullscreen();
             }
         });
-    }
-}
-
-function toggleFullScreen(videoContainer) {
-    const scrollContainer = document.getElementById('video-wrapper'); // Adjust this if your scroll container has a different ID
-
-    if (!document.fullscreenElement) {
-        // Disable scroll snap before entering fullscreen
-        scrollContainer.style.scrollSnapType = 'none';
-
-        if (videoContainer.requestFullscreen) {
-            videoContainer.requestFullscreen().then(() => {
-                videoContainer.classList.add('fullscreen'); // Add class for fullscreen styling
-                // Re-enable scroll snap after exiting fullscreen
-                document.addEventListener('fullscreenchange', function restoreSnap() {
-                    if (!document.fullscreenElement) {
-                        scrollContainer.style.scrollSnapType = 'y mandatory';
-                        videoContainer.classList.remove('fullscreen'); // Remove class when exiting fullscreen
-                        document.removeEventListener('fullscreenchange', restoreSnap);
-                    }
-                });
-            });
-        } else if (videoContainer.mozRequestFullScreen) { /* Firefox */
-            videoContainer.mozRequestFullScreen();
-        } else if (videoContainer.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-            videoContainer.webkitRequestFullscreen();
-        } else if (videoContainer.msRequestFullscreen) { /* IE/Edge */
-            videoContainer.msRequestFullscreen();
-        }
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) { /* Firefox */
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE/Edge */
-            document.msExitFullscreen();
-        }
     }
 }
 

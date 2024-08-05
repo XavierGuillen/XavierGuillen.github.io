@@ -20,14 +20,14 @@ document.addEventListener("DOMContentLoaded", function() {
         projectDirector.textContent = project.director;
         projectCinematographer.textContent = `DoP: ${project.cinematographer}`;
         projectProduction.textContent = `Prod. Co: ${project.productionCompany}`;
-    
+
         const totalVideos = project.media.filter(media => media.type === 'video').length;
         videoCountIndicator.textContent = `1/${totalVideos}`;
         videoCountLink.href = `projectPage.html?id=${project.id}&index=${currentIndex}`;
         videoCountLinkMobile.href = `projectPage.html?id=${project.id}&index=${currentIndex}`;
-    
+
         videoSlideshow.innerHTML = '';
-    
+
         const firstVideo = project.slideshowVideo;
         if (firstVideo) {
             const iframe = document.createElement('iframe');
@@ -35,9 +35,10 @@ document.addEventListener("DOMContentLoaded", function() {
             iframe.frameBorder = '0';
             iframe.allow = 'autoplay; fullscreen';
             iframe.style.pointerEvents = 'none';
-        
+            iframe.classList.add('slideshow-video'); // Add this line to add a specific class
+
             videoSlideshow.appendChild(iframe);
-        
+
             const player = new Vimeo.Player(iframe);
             player.on('play', function() {
                 if (progressInterval) {
