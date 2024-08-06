@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mousemove', handleUserActivity);
     document.addEventListener('touchstart', handleUserActivity);
     document.addEventListener('touchmove', handleUserActivity);
+    document.addEventListener('scroll', handleUserActivity);
+    document.addEventListener('touchend', handleUserActivity);
 
     function handleUserActivity() {
         // Show the close button and about wrapper
