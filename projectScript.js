@@ -34,25 +34,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const footer = document.getElementById('footer');
     const closeButtonMobile = document.getElementById('close-btn-mobile');
 
-    document.addEventListener('mousemove', handleUserActivity);
-    document.addEventListener('touchstart', handleUserActivity);
-    document.addEventListener('touchmove', handleUserActivity);
-    document.addEventListener('scroll', handleUserActivity);
-    document.addEventListener('touchend', handleUserActivity);
-
     function handleUserActivity() {
         // Show the close button and about wrapper
         closeButton.classList.remove('hidden');
         aboutWrapper.classList.remove('hidden');
         footer.classList.remove('hidden');
-        closeButtonMobile.classList.remove('hidden');
 
         clearTimeout(window.inactivityTimeout);
         window.inactivityTimeout = setTimeout(() => {
             closeButton.classList.add('hidden');
             aboutWrapper.classList.add('hidden');
             footer.classList.add('hidden');
-            closeButtonMobile.classList.add('hidden');
         }, 3000); // Adjust the timeout duration as needed
     }
 });
