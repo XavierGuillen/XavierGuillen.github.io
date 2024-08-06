@@ -34,7 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const footer = document.getElementById('footer');
     const closeButtonMobile = document.getElementById('close-btn-mobile');
 
-    document.addEventListener('mousemove', function() {
+    document.addEventListener('mousemove', handleUserActivity);
+    document.addEventListener('touchstart', handleUserActivity);
+    document.addEventListener('touchmove', handleUserActivity);
+
+    function handleUserActivity() {
         // Show the close button and about wrapper
         closeButton.classList.remove('hidden');
         aboutWrapper.classList.remove('hidden');
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             footer.classList.add('hidden');
             closeButtonMobile.classList.add('hidden');
         }, 3000); // Adjust the timeout duration as needed
-    });
+    }
 });
 
 function updateProjectInfo(project) {
