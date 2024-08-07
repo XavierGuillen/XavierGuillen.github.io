@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const index = urlParams.get('index'); // Get the index parameter from the URL
 
     const closeButton = document.getElementById('close-btn');
-    const closeButtonMobile = document.getElementById('close-btn-mobile'); // Add this line
 
     if (closeButton) {
         closeButton.href = `index.html?index=${index}`; // Set the href to include the index
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const closeButton = document.getElementById('close-btn');
-    const closeButtonMobile = document.getElementById('close-btn-mobile'); // Add this line
     const aboutWrapper = document.getElementById('about-wrapper');
     const footer = document.getElementById('footer');
 
@@ -40,14 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
         closeButton.classList.remove('hidden');
         aboutWrapper.classList.remove('hidden');
         footer.classList.remove('hidden');
-        closeButtonMobile.classList.remove('hidden');
 
         clearTimeout(window.inactivityTimeout);
         window.inactivityTimeout = setTimeout(() => {
             closeButton.classList.add('hidden');
             aboutWrapper.classList.add('hidden');
             footer.classList.add('hidden');
-            closeButtonMobile.classList.add('hidden');
         }, 3000); // Adjust the timeout duration as needed
     });
 });
