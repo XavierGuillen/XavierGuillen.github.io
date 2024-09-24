@@ -103,6 +103,25 @@ function populateMediaGrid(project) {
                         iframe.style.height = `${iframe.clientWidth * aspectRatio}px`;
                     });
                 });
+
+                // Stop the video at the first frame
+                player.pause().then(() => {
+                    player.setCurrentTime(0);
+                });
+
+                // Check if the user is on a mobile device
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+                if (!isMobile) {
+                    // Play video on mouse enter and pause on mouse leave (only for desktop)
+                    iframeContainer.addEventListener('mouseenter', () => {
+                        player.play();
+                    });
+
+                    iframeContainer.addEventListener('mouseleave', () => {
+                        player.pause();
+                    });
+                }
             });
 
         } else {

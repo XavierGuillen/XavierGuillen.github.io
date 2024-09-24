@@ -14,6 +14,23 @@ document.addEventListener("DOMContentLoaded", function() {
     
     let currentIndex = parseInt(new URLSearchParams(window.location.search).get('index'), 10) || 0;
     let progressInterval;
+    let nextIndex = (currentIndex + 1) % projects.length;
+    let preloadedPlayer;
+
+    function preloadNextVideo() {
+        const nextProject = projects[nextIndex];
+        if (nextProject && nextProject.slideshowVideo) {
+            const preloadIframe = document.createElement('iframe');
+            preloadIframe.src = nextProject.slideshowVideo.src.replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=0&muted=1&background=1&autopause=1&quality=720p';
+            preloadIframe.style.display = 'none';
+            document.body.appendChild(preloadIframe);
+            preloadedPlayer = new Vimeo.Player(preloadIframe);
+            preloadedPlayer.ready().then(() => {
+                preloadedPlayer.setVolume(0);
+                preloadedPlayer.play();
+            });
+        }
+    }
 
     function updateProjectInfo(project) {
         projectTitle.textContent = project.title;
@@ -31,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const firstVideo = project.slideshowVideo;
         if (firstVideo) {
             const iframe = document.createElement('iframe');
-            iframe.src = firstVideo.src.replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&&muted=1&background=1&autopause=1';
+            iframe.src = firstVideo.src.replace('vimeo.com', 'player.vimeo.com/video') + '?autoplay=1&muted=1&background=1&autopause=1&quality=720p';
             iframe.frameBorder = '0';
             iframe.allow = 'autoplay; fullscreen';
             iframe.style.pointerEvents = 'none';
-            iframe.classList.add('slideshow-video'); // Add this line to add a specific class
+            iframe.classList.add('slideshow-video');
 
             videoSlideshow.appendChild(iframe);
 
@@ -51,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             headerMenuWrapper.style.background = `linear-gradient(90deg, rgba(0,0,0,1) ${progressWidth}%, rgba(0,0,0,0.35) ${progressWidth + 20}%)`;
                         });
                     });
-                }, 10); // Update every 1ms for smoother transition
+                }, 10);
             });
 
             player.on('pause', function() {
@@ -61,12 +78,16 @@ document.addEventListener("DOMContentLoaded", function() {
             player.on('ended', function() {
                 clearInterval(progressInterval);
                 currentIndex = (currentIndex + 1) % projects.length;
+                nextIndex = (currentIndex + 1) % projects.length;
                 updateProjectInfo(projects[currentIndex]);
+                preloadNextVideo();
             });
         }
+
+        preloadNextVideo();
     }
 
-    updateProjectInfo(projects[currentIndex]); // Initialize the first project's video
+    updateProjectInfo(projects[currentIndex]);
 
     videoSlideshow.addEventListener('mousemove', function(event) {
         const rect = videoSlideshow.getBoundingClientRect();
